@@ -127,9 +127,6 @@ Layout的实现类是绑定到Appender的实现对象上的
     }
 
 
-
-
-
 [logback配置详情](https://www.jianshu.com/p/1ded57f6c4e3)  
 [logback-Filter机制](https://blog.csdn.net/d8111/article/details/45249555)  
 [logback的日志格式配置](https://www.cnblogs.com/chrischennx/p/6781574.html)
