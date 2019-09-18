@@ -1,0 +1,46 @@
+
+创建主题
+./kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --replication-factor 1 --partitions 1 --topic test
+删除主题
+./kafka-topics.sh --zookeeper 10.0.210.152:2181 --delete --topic test
+查看指定主题情况
+./kafka-topics.sh --zookeeper 127.0.0.1:2181 --describe --topic test
+
+生产数据向指定分区
+./kafka-console-producer.sh --broker-list 192.168.223.100:9092,192.168.223.101:9092,192.168.223.102:9092 --topic test
+
+消费指定主题
+./kafka-console-consumer.sh --bootstrap-server 192.168.223.100:9092,192.168.223.101:9092,192.168.223.102:9092 --topic test --from-beginning
+查看所有分区情况
+/root/kafka_2.11-1.1.1/bin/kafka-topics.sh --zookeeper 127.0.0.1:2181 --list
+
+修改topic的分区数
+./kafka-topics.sh --zookeeper 127.0.0.1:2181 --alter --topic test --partitions 6
+生成迁移计划
+topic.json 文件内容
+{
+"topics": [
+{"topic": "test"}
+],
+"version": 1
+}
+./kafka-reassign-partitions.sh --zookeeper 127.0.0.1:2181 --topics-to-move-json-file ../../topic.json --broker-list "0,1,2" --generate
+迁移数据
+Current partition replica assignment
+{"version":1,
+"partitions":[....]
+}
+Proposed partition reassignment configuration
+{"version":1,
+"partitions":[.....]
+}
+./kafka-reassign-partitions.sh --zookeeper 127.0.0.1:2181 --reassignment-json-file ../reassignment.json --execute
+新建一个文件reassignment.json，保存上边这些信息。
+其中Current partition replica assignment指当前的分区情况，
+Proposed partition reassignment configuration是计划的分区情况
+验证数据迁移状态
+./kafka-reassign-partitions.sh --zookeeper 127.0.0.1:2181 --reassignment-json-file ../reassignment.json --verify
+
+连接zk
+./zookeeper-shell.sh 127.0.0.1:2181
+
