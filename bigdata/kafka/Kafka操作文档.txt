@@ -6,15 +6,23 @@
 查看指定主题情况
 ./kafka-topics.sh --zookeeper 127.0.0.1:2181 --describe --topic test
 
+查看指定组消费情况
+/root/kafka_2.11-1.1.1/bin/kafka-consumer-groups.sh --bootstrap-server 192.168.223.100:9092,192.168.223.101:9092,192.168.223.102:9092 --describe --group dataset_ips
+
 生产数据向指定分区
 ./kafka-console-producer.sh --broker-list 192.168.223.100:9092,192.168.223.101:9092,192.168.223.102:9092 --topic test
 
-消费指定主题
+消费指定主题 从开始位置消费
 ./kafka-console-consumer.sh --bootstrap-server 192.168.223.100:9092,192.168.223.101:9092,192.168.223.102:9092 --topic test --from-beginning
+消费指定分区 最新位置开始消费    earliest 最早位置
+./kafka-console-consumer.sh --bootstrap-server 192.168.223.100:9092,192.168.223.101:9092,192.168.223.102:9092 --topic log_huawei --offset latest --partition 0
 查看所有分区情况
 /root/kafka_2.11-1.1.1/bin/kafka-topics.sh --zookeeper 127.0.0.1:2181 --list
+重设偏移量 指定主题和组
+./kafka-consumer-groups.sh --bootstrap-server 192.168.223.100:9092,192.168.223.101:9092,192.168.223.102:9092 --execute --reset-offsets 180600000 --topic log_huawei --group dataset_ips_test
 
 修改topic的分区数
+/root/kafka_2.11-1.1.1/bin/kafka-topics.sh --zookeeper 192.168.223.100:2181,192.168.223.101:2181,192.168.223.102:2191 -alter --partitions 10 --topic log_huawei
 ./kafka-topics.sh --zookeeper 127.0.0.1:2181 --alter --topic test --partitions 6
 生成迁移计划
 topic.json 文件内容
