@@ -10,7 +10,7 @@ git clone -b  branch-2.4  https://github.com/ReformSun/spark.git
    git rm -r/-f --cache “*.iml”   
    git add .  
    git commit -m "update gitignore"
-## checkouty远程分支
+## checkout远程分支
    git ls-remote origin  
    git checkout -b branceName origin/branchName
 
