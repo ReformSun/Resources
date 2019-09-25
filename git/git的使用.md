@@ -47,5 +47,11 @@ Switched to branch 'testdev'
 
 - 将创建的分支推送到远程仓库  
 git push origin testdev  
-- 分支不提交到远程仓库，修改完文件把结果直接合并到主分支，直接删除本地分支
+- 分支不提交到远程仓库，修改完文件把结果直接合并到主分支，直接删除本地分支  
 修改文件  
+git add .    
+git commit -m "c"  
+git checkout master 
+合并分支   
+git merge testdev1
+
