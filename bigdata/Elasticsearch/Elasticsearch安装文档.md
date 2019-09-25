@@ -6,6 +6,45 @@
 ```
 	tar -zxf elasticsearch-7.3.2-linux-x86_64.tar.gz
 ```
+## 创建es用户并设置密码
+添加用户  
+adduser es
+修改密码  
+passwd es  
+## 修改elasticsearch所在目录的访问权限
+在root用户下  
+su root  
+chown -R es:es /opt/elasticsearch-7.3.2/  
+修改在配置文中设置的log和data目录的权限或者  
+chown -R es:es /root/  
+## 修改linux系统的配置文件
+在root用户下
+su root  
+vi /etc/security/limits.conf 
+ 
+```
+#<domain>      <type>  <item>         <value>
+#*               soft    core            0
+#*               hard    rss             10000
+#@student        hard    nproc           20
+#@faculty        soft    nproc           20
+#@faculty        hard    nproc           50
+#ftp             hard    nproc           0
+#@student        -       maxlogins       4
+es              -       memlock         unlimited
+es              -       nofile          65536
+es              -       nproc           65535
+
+```
+es - memlock unlimited  
+当前用户能打开的最大文件数  
+es - nofile 65536 
+当前用户能打开的最大进程数 
+es - nproc 65535  
+vi /etc/sysctl.d/99-sysctl.conf  
+vm.max_map_count=262144  
+sysctl -p
+
 
 ## 修改配置文件
 `vi elasticsearch.yml`  
@@ -25,7 +64,8 @@
 
 ### 基本配置
 - 设置当前的ip地址,通过指定相同网段的其他节点会加入该集群中  
-`network.host: ip`
+`network.host: 0.0.0.0`  
+<font color=red>注意：</font> 必须写0.0.0.0 不然会报错
 - 对外提供服务的端口号  
 `http.por: 9200`
 - 集群中master节点的初始列表，可以通过这些节点来自动发现新加入集群的节点  
@@ -68,3 +108,12 @@
 ./bin/elasticsearch
 - 后台启动  
 ./bin/elasticsearch -d
+
+## 查看进程
+ps -ef|grep elasticsearch
+
+## 停止进程
+ps aux|grep elasticsearch|grep -v grep|awk '{print $2}'|xargs kill -9
+
+## 引用
+[Linux 用户线程数与文件句柄树调整(nproc与nofile的问题)](https://blog.ct99.cn/?p=3260)

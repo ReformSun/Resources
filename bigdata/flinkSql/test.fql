@@ -1,0 +1,14 @@
+
+
+
+SELECT  count(pathhash),pathhashType,cpathhashType,lid,TUMBLE_START(timestamp, INTERVAL '1' MINUTE)
+FROM  table1 groub by TUMBLE(timestamp, INTERVAL '1' MINUTE),pathhashType,cpathhashType,lid;
+
+
+SELECT  AVG(duration),count(pathhashType),TUMBLE_START(timestamp_value, INTERVAL '1' MINUTE)
+,pathhash,pathhashName,pathhashType,cpathhash,cpathhashName,cpathhashType,status
+FROM table1 GROUP BY TUMBLE(timestamp_value, INTERVAL '1' MINUTE),pathhash,pathhashName,pathhashType
+,cpathhash,cpathhashName,cpathhashType,status;
+
+SELECT  
+FROM    table_name;
