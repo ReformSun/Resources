@@ -10,5 +10,8 @@ SELECT  AVG(duration),count(pathhashType),TUMBLE_START(timestamp_value, INTERVAL
 FROM table1 GROUP BY TUMBLE(timestamp_value, INTERVAL '1' MINUTE),pathhash,pathhashName,pathhashType
 ,cpathhash,cpathhashName,cpathhashType,status;
 
-SELECT  
-FROM    table_name;
+SELECT  COUNT(pathhash) > 1,pathhash,pathhashName,pathhashType,cpathhash,cpathhashName,cpathhashType,AVG(duration),
+TUMBLE_START(timestamp_value, INTERVAL '1' MINUTE),status
+FROM    table_name WHERE   GROUP BY TUMBLE(time_attr, INTERVAL 'interval' unit)
+
+SELECT COUNT(pathhash) > 2,pathhash,pathhashName,pathhashType,cpathhash,cpathhashName,cpathhashType,AVG(duration),TUMBLE_START(timestamp_value, INTERVAL '1' MINUTE) FROM table WHERE status = 'error' GROUP BY TUMBLE(timestamp_value, INTERVAL '1' MINUTE),pathhash,pathhashName,pathhashType,cpathhash,cpathhashName,cpathhashType,duration
