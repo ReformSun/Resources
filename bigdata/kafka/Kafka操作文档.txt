@@ -1,23 +1,30 @@
 
 创建主题
-./kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --replication-factor 1 --partitions 1 --topic test
+./bin/kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --replication-factor 1 --partitions 1 --topic test
 删除主题
-./kafka-topics.sh --zookeeper 10.0.210.152:2181 --delete --topic test
+./bin/kafka-topics.sh --zookeeper 10.0.210.152:2181 --delete --topic test
 查看指定主题情况
-./kafka-topics.sh --zookeeper 127.0.0.1:2181 --describe --topic test
+./bin/kafka-topics.sh --zookeeper 127.0.0.1:2181 --describe --topic test
+查看所有分区情况
+./bin/kafka-topics.sh --zookeeper 127.0.0.1:2181 --list
+
+
 
 查看指定组消费情况
-/root/kafka_2.11-1.1.1/bin/kafka-consumer-groups.sh --bootstrap-server 192.168.223.100:9092,192.168.223.101:9092,192.168.223.102:9092 --describe --group dataset_ips
+./bin/kafka-consumer-groups.sh --bootstrap-server 172.31.35.58:9092 --describe --group serverCollector
+列出所有消费者组
+./bin/kafka-consumer-groups.sh --bootstrap-server 172.31.35.58:9092 --list
 
-生产数据向指定分区
-./kafka-console-producer.sh --broker-list 192.168.223.100:9092,192.168.223.101:9092,192.168.223.102:9092 --topic test
+
+
+生产数据向指定主题
+./kafka-console-producer.sh --broker-list 172.31.35.58:9092 --topic test
 
 消费指定主题 从开始位置消费
 ./kafka-console-consumer.sh --bootstrap-server 192.168.223.100:9092,192.168.223.101:9092,192.168.223.102:9092 --topic test --from-beginning
 消费指定分区 最新位置开始消费    earliest 最早位置
 ./kafka-console-consumer.sh --bootstrap-server 192.168.223.100:9092,192.168.223.101:9092,192.168.223.102:9092 --topic log_huawei --offset latest --partition 0
-查看所有分区情况
-/root/kafka_2.11-1.1.1/bin/kafka-topics.sh --zookeeper 127.0.0.1:2181 --list
+
 重设偏移量 指定主题和组
 ./kafka-consumer-groups.sh --bootstrap-server 192.168.223.100:9092,192.168.223.101:9092,192.168.223.102:9092 --execute --reset-offsets 180600000 --topic log_huawei --group dataset_ips_test
 
@@ -51,4 +58,5 @@ Proposed partition reassignment configuration是计划的分区情况
 
 连接zk
 ./zookeeper-shell.sh 127.0.0.1:2181
+
 

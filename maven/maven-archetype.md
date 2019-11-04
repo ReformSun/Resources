@@ -14,6 +14,7 @@ mvn archetype:create-from-project
 这时会在/Users/apple/.m2/repository 也就是maven的本地仓库的根目录生成一个archetype-catalog.xml文件，这时可以通过模型创建项目了  
 4. 执行命令 mvn archetype:generate -DarchetypeCatalog=local  
 从本地Catalog创建项目
+![Facade](https://raw.githubusercontent.com/ReformSun/Resources/master/pictures/maven_1.png)
 
 
 
