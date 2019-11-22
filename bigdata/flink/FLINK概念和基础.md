@@ -5,10 +5,13 @@
 ## Flink相比传统的Spark Streaming有什么区别？和Spark中的structured streaming 相比呢？Flink相比ss和storm有什么优势？
 
 ## Flink的组件栈是怎么样的？
+组件栈：
 
 ## Flink的基础编程模型了解吗？
 
 ## 说说Flink架构中的角色和作用？
+[Fink-flip-6](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=65147077)  
+[介绍架构的比较好的文章](https://developer.aliyun.com/article/720813?spm=a2c4e.11153940.0.0.4e2d1916NSSR59&groupCode=sc)
 
 ## 说说Flink中常用的算子？用过哪些？
 
