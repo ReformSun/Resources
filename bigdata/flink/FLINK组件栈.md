@@ -1,5 +1,7 @@
 # flink 组件栈
-![图片](https://github.com/ReformSun/Resources/raw/master/flink/%E5%9B%BE%E7%89%87/flink_a.png)
+
+![图片](https://github.com/ReformSun/Resources/raw/master/flink/pictures/flink_a.png)  
+
 
 ## flink采用的分层式的架构系统
 

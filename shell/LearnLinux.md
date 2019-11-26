@@ -3,9 +3,9 @@ ps -ef | grep pro
 ls -l /proc/92918
 
 
-cwd: 文件所在目录
-exe：执行命令的完整路径
-environ： 执行命令时的环境变量
+cat /proc/pid/cwd: 文件所在目录
+cat /proc/pid/exe：执行命令的完整路径
+cat /proc/pid/environ： 执行命令时的环境变量
 
 
 lsof -i:18101 查看那个端口被那个程序占用

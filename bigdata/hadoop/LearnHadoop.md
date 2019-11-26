@@ -6,7 +6,7 @@
 ### 把本地文件拷贝到hadoop文件系统中
 ./hadoop fs -copyFromLocal /Users/apple/Desktop/Server/data/local/x_table.txt hdfs://localhost:9000/table/
 ### [-ls [-d] [-h] [-R] [<path> ...]]
-./hadoop fs -ls hdfs://localhost:9000/dir1/
+./hadoop fs -ls hdfs://localhost:9000/dir1/  
 ./hadoop fs -ls hdfs://localhost:9000/dir2/dir3/
 ### -appendToFile
 ./hadoop fs -appendToFile /Users/apple/Desktop/Server/data/local/test.txt hdfs://localhost:9000/dir1/test.txt
