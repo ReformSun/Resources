@@ -12,6 +12,14 @@ lsof -i:18101 查看那个端口被那个程序占用
 sudo lsof -i :18101
 ps -aux 查看终端上所有用户的相关进程信息
 
+
+## linux 环境变量
+1. 直接执行  
+export JMETER_HOME=/opt/software/apache-jmeter-4.0  
+export PATH=$JMETER_HOME/bin:$PATH  
+2. 立刻生效  
+source /etc/profile
+
 ## 启动项目的命令
 
 nohup ./prometheus --config.file=./prometheus.yml & tail -200f nohup.out
