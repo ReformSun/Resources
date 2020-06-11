@@ -1,0 +1,11 @@
+14天到期后
+使用appcleaner卸载 
+然后删除sudo rm -Rf ~/Library/Application Support/PremiumSoft CyberTech
+
+/Library/Application Support/PremiumSoft CyberTech 删除
+
+重新安装数据库就又可以再使用14天
+
+
+破解文章
+https://www.jianshu.com/p/184a5ad3efc2

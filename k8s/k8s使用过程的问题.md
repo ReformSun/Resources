@@ -33,3 +33,21 @@ alias kubectl=" kubectl -s http://localhost:8088"
 ```
 
 状态： 解决
+
+### 问题3
+问题描述：不能在其它的服务器上访问api-server服务    
+
+```
+通过命令netstat -tnlp查看
+tcp6       0      0 127.0.0.1:8080                 0.0.0.0:*                    LISTEN      572/kube-apiserver  
+这样的情况不能再外部访问  
+修改apiserver配置文件
+vi /etc/kubernetes/apiserver
+
+修改KUBE_API_ADDRESS="--insecure-bind-address=127.0.0.1"为
+KUBE_API_ADDRESS="--insecure-bind-address=0.0.0.0"  
+重启服务： systemctl restart kube-apiserver
+
+```
+
+状态： 解决

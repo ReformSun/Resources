@@ -1,6 +1,7 @@
 
 
 
+
 SELECT  count(pathhash),pathhashType,cpathhashType,lid,TUMBLE_START(timestamp, INTERVAL '1' MINUTE)
 FROM  table1 groub by TUMBLE(timestamp, INTERVAL '1' MINUTE),pathhashType,cpathhashType,lid;
 

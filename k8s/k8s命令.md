@@ -16,6 +16,13 @@ kubectl get rc
 kubectl get pods
 ```
 
+### 修改rc的副本数
+可实现pod的动态伸缩
+```
+kubectl scale rc mysql1 --replicas=3
+
+```
+
 ### 删除资源对象
 
 ```
